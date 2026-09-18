@@ -39,6 +39,10 @@ The skills intentionally do not copy current method, event, error, payload, or c
 
 Remote effects require the exact organization and `sandbox` or `live` mode. Installing or loading a skill never contacts Commet or changes billing resources.
 
+## MCP connection
+
+The optional plugin bundle connects to `https://commet.co/mcp/v2`. Use the client's OAuth sign-in to select an organization, or configure an API key as documented in the [MCP guide](https://commet.co/docs/mcp-server). Installing skills with `npx skills add` does not connect to MCP.
+
 ## Prerequisites
 
 - A [Commet](https://commet.co) account (free to start)
@@ -47,7 +51,7 @@ Remote effects require the exact organization and `sandbox` or `live` mode. Inst
 ## Links
 
 - [Documentation](https://commet.co/docs)
-- [MCP Server](https://commet.co/commet-mcp)
+- [MCP Server](https://commet.co/docs/mcp-server)
 - [Agent Skills](https://commet.co/agent-skills)
 - [GitHub](https://github.com/commet-labs/commet)
 

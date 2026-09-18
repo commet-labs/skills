@@ -1,8 +1,8 @@
 {
   "name": "commet",
   "displayName": "Commet",
-  "description": "Skills and MCP server for the Commet billing platform — subscriptions, usage tracking, seats, feature gating, AI token billing, webhooks, and billing business rules.",
-  "version": "1.0.0",
+  "description": "Skills and MCP server for the Commet billing platform \u2014 subscriptions, usage tracking, seats, feature gating, AI token billing, webhooks, and billing business rules.",
+  "version": "1.0.1",
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "author": {
@@ -12,5 +12,13 @@
   "homepage": "https://commet.co",
   "repository": "https://github.com/commet-labs/skills",
   "license": "MIT",
-  "keywords": ["billing", "payments", "subscriptions", "usage", "seats", "saas", "merchant-of-record"]
+  "keywords": [
+    "billing",
+    "payments",
+    "subscriptions",
+    "usage",
+    "seats",
+    "saas",
+    "merchant-of-record"
+  ]
 }
