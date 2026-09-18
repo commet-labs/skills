@@ -1,0 +1,22 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "commet",
+  "version": "1.0.0",
+  "description": "Skills for integrating Commet billing using the contracts installed with your SDK.",
+  "author": {
+    "name": "Commet",
+    "url": "https://commet.co"
+  },
+  "homepage": "https://commet.co",
+  "repository": "https://github.com/commet-labs/skills",
+  "license": "MIT",
+  "keywords": [
+    "billing",
+    "payments",
+    "subscriptions",
+    "usage",
+    "seats",
+    "saas",
+    "merchant-of-record"
+  ]
+}

@@ -39,6 +39,10 @@ The skills intentionally do not copy current method, event, error, payload, or c
 
 Remote effects require the exact organization and `sandbox` or `live` mode. Installing or loading a skill never contacts Commet or changes billing resources.
 
+## Portable skills package
+
+The root [plugin.json](plugin.json) describes this repository as an [Agent Plugins](https://agent-plugins.org/specification) skills package. Compatible clients discover the existing workflows in `skills/`. This portable package includes skills only; configure MCP separately using the connection guide below. The client-specific Codex, Claude Code, and Cursor bundles retain their existing MCP configuration.
+
 ## MCP connection
 
 The optional plugin bundle connects to `https://commet.co/mcp/v2`. Use the client's OAuth sign-in to select an organization, or configure an API key as documented in the [MCP guide](https://commet.co/docs/mcp-server). Installing skills with `npx skills add` does not connect to MCP.
