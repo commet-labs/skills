@@ -4,9 +4,9 @@
 
 Paid plans have one or more public plan-price resources. Free plans have no price row. Hiding a plan controls discovery; archiving it does not automatically cancel or migrate subscriptions.
 
-Regional pricing is stored per country. Configuring a local currency for a plan applies its prices and overage values to every supported country that uses that currency, derived from an exchange rate or fixed. Markets, available to Enterprise organizations, map reusable, non-overlapping country groups to explicit price and currency overrides. A non-USD Market price requires the plan's regional pricing for that currency first.
+Regional pricing is configured per currency. Configuring a local currency for a plan applies its prices and overage values to every supported country that uses that currency, derived from an exchange rate or fixed; countries that share a currency always share its regional price. Markets, available to Enterprise organizations, map reusable, non-overlapping country groups to explicit price and currency overrides. A non-USD Market price requires the plan's regional pricing for that currency first.
 
-The request country at checkout selects the price: a Market override first, then the plan's price for that country, then the base USD price. The billing address is tax and payer data and never selects pricing. Server-to-server subscription creation has no request country, so the currency is decided when the buyer opens checkout.
+The request country at checkout selects the price: a Market override first, then the plan's regional price for the country's currency, then the base USD price. The billing address is tax and payer data and never selects pricing. Server-to-server subscription creation has no request country, so the currency is decided when the buyer opens checkout.
 
 A price variant points to one base price through `inheritsFromPriceId` and overrides selected markets. Every unselected market inherits the base price. A caller selects a variant with `priceId`; omitting `priceId` keeps default-price resolution.
 
