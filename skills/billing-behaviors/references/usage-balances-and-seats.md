@@ -10,7 +10,7 @@ A plan uses one consumption model for usage features:
 
 Feature types are `boolean`, `usage`, `seats`, and `quota`. `metered` is a consumption model, not a persisted feature type.
 
-Use `featureAccess.get()` for current feature state. Use `usage.check()` before a prospective consumption, then `usage.track()` to record it. Usage inputs use `featureCode`; the logical body identity is `eventId`.
+Use `featureAccess.get()` for current feature state. Use `usage.check()` before a prospective consumption, then `usage.track()` to record it. `usage.set()` replaces a metered feature's current-period usage with an exact value; protect retries with an idempotency key. Usage inputs use `featureCode`; the logical body identity is `eventId`.
 
 ## Resets and purchases
 

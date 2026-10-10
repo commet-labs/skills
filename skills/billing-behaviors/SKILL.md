@@ -15,10 +15,10 @@ In Node projects, run `commet doctor --output agent` before integration changes 
 
 ## Choose the relevant behavior reference
 
-- [subscriptions-and-plan-changes.md](references/subscriptions-and-plan-changes.md) — lifecycle, access, introductory eligibility, changes, cancellation, and reactivation.
+- [subscriptions-and-plan-changes.md](references/subscriptions-and-plan-changes.md) — lifecycle, access, introductory eligibility, changes, cancellation, reactivation, and pause.
 - [billing-and-dunning.md](references/billing-and-dunning.md) — billing periods, invoice composition, discounts, and retry scheduling.
 - [usage-balances-and-seats.md](references/usage-balances-and-seats.md) — consumption models, resets, packs, top-ups, quota, and seat true-up.
-- [catalog-pricing-and-offers.md](references/catalog-pricing-and-offers.md) — plans, currency pricing, Markets, selectable variants, Offers, promo codes, add-ons, and archive behavior.
+- [catalog-pricing-and-offers.md](references/catalog-pricing-and-offers.md) — plans, country pricing, Markets, selectable variants, Offers, promo codes, add-ons, and archive behavior.
 
 Do not derive behavior from a generic fairness slogan. Scheduling, charging, discounts, retries, and resets are explicit per operation. For renewal timing, verify the current discovery predicate; never infer that a subscription is due from a date-only dashboard value, a legacy billing-day column, or the cron schedule.
 

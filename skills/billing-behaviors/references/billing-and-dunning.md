@@ -16,6 +16,8 @@ Quarterly and yearly subscriptions still process monthly boundaries. The plan ba
 
 Free plans have no plan-base invoice, but their monthly period and configured allocations still rotate.
 
+Paused subscriptions generate no renewal invoices. A period-end pause can still produce a final invoice for usage, overage, or seat adjustments from the period that ended; it does not charge advance capacity for the next period.
+
 ## Invoice composition
 
 Recurring invoices contain, in order:
