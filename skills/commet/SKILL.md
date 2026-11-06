@@ -16,6 +16,7 @@ Before changing an integration:
 3. Resolve `docs/manifest.json` from that installed artifact, read the manifest entrypoint, and then read only the relevant generated reference and Platform documents named by the manifest.
 4. Read generated types from the same installed artifact when the task depends on an exact request, response, error, or webhook shape.
 5. If the installed artifact has no documentation, stop and report the exact package and version. Do not silently substitute current web documentation for an older installed contract.
+6. Plan version operations, such as publishing versions, moving subscribers, `planVersionId`, and the version-change events, need an installed SDK version whose manifest lists them. If it does not, report the package and version; never read them from a source checkout.
 
 Use the package manager rather than a source checkout to locate the artifact:
 
@@ -63,5 +64,6 @@ Before a remote effect:
 3. Otherwise, require the organization and mode from explicit project configuration or the user; never infer mode from an API-key prefix.
 4. State the target before executing. Do not perform a live write unless the user's request explicitly authorizes that effect.
 5. Prefer a documented dry run or sandbox verification when available. Do not invent flags or remote behavior that the installed documentation does not expose.
+6. A plan edit publishes a new plan version and does not reach existing subscribers. Before editing a plan or moving subscribers, ask whether existing subscribers stay on their version, move at their next renewal, or move now, and preview the move; the `billing-behaviors` skill describes the rules.
 
 Never expose API keys, webhook secrets, authorization tokens, or full environment values in output, patches, logs, or tests.

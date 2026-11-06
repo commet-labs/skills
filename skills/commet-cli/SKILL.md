@@ -20,10 +20,10 @@ If the installed CLI does not expose a command or flag, do not substitute one fr
 
 - For local diagnosis, run doctor and report its structured evidence without printing secret values.
 - For agent instructions, use the installed `agents` capability. Setup mutates repository files, so run it only when the user explicitly asks.
-- For configuration sync, inspect the installed pull or push capability, preview the exact diff when supported, and preserve project-owned configuration.
+- For configuration sync, inspect the installed pull or push capability, preview the exact diff when supported, and preserve project-owned configuration. Pushing plan changes publishes a new plan version for new subscribers and moves no existing subscriber; say so in the preview before a live push.
 - For webhook forwarding, confirm the local destination, requested event scope, and process lifetime before starting it.
 - For scaffolding, confirm the destination directory and organization context before creating files or remote resources.
-- For resource operations, derive resources, actions, parameters, and output format from the installed capability manifest and help output.
+- For resource operations, derive resources, actions, parameters, and output format from the installed capability manifest and help output. Plan write commands also publish a new version and move nobody. If the installed CLI exposes no version move command, moving subscribers goes through the dashboard, the API, or MCP.
 
 ## Guard effects
 

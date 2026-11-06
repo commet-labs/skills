@@ -13,7 +13,7 @@ npx skills add commet-labs/skills
 | Skill | Description |
 |-------|-------------|
 | `commet` | Version-matched SDK integration across Node, Python, Go, Java, and PHP |
-| `billing-behaviors` | Business behavior — proration, plan changes, subscription lifecycle |
+| `billing-behaviors` | Business behavior — proration, plan changes, plan versions, subscription lifecycle |
 | `commet-cli` | CLI workflows — diagnostics, setup, sync, forwarding, and resources |
 | `commet-webhooks` | Webhook workflow — contract discovery, verification, idempotency, and handling |
 | `ai-billing` | AI usage billing — measurement, configuration, idempotency, and verification |

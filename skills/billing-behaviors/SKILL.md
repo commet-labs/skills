@@ -1,6 +1,6 @@
 ---
 name: billing-behaviors
-description: Reason about Commet subscription, plan-change, invoicing, dunning, usage, credits, balance, seats, add-on, pricing, Offer, and billing edge cases. Use the installed SDK documentation for exact API contracts and these verified references only for behavior that the generated contract cannot express.
+description: Reason about Commet subscription, plan-change, plan version, subscriber move, invoicing, dunning, usage, credits, balance, seats, add-on, pricing, Offer, and billing edge cases. Use the installed SDK documentation for exact API contracts and these verified references only for behavior that the generated contract cannot express.
 ---
 
 # Billing behavior rules
@@ -18,10 +18,11 @@ In Node projects, run `commet doctor --output agent` before integration changes 
 - [subscriptions-and-plan-changes.md](references/subscriptions-and-plan-changes.md) — lifecycle, access, introductory eligibility, changes, cancellation, reactivation, and pause.
 - [billing-and-dunning.md](references/billing-and-dunning.md) — billing periods, invoice composition, discounts, and retry scheduling.
 - [usage-balances-and-seats.md](references/usage-balances-and-seats.md) — consumption models, resets, packs, top-ups, quota, and seat true-up.
-- [catalog-pricing-and-offers.md](references/catalog-pricing-and-offers.md) — plans, regional pricing by currency, Markets, selectable variants, Offers, promo codes, add-ons, and archive behavior.
+- [catalog-pricing-and-offers.md](references/catalog-pricing-and-offers.md) — plans, regional pricing by currency and country, Markets, selectable variants, Offers, promo codes, add-ons, and archive behavior.
+- [plan-versions-and-moves.md](references/plan-versions-and-moves.md) — plan versions, plan edits, experiments, moving subscribers between versions, and extras sold per version.
 
 Do not derive behavior from a generic fairness slogan. Scheduling, charging, discounts, retries, and resets are explicit per operation. For renewal timing, verify the current discovery predicate; never infer that a subscription is due from a date-only dashboard value, a legacy billing-day column, or the cron schedule.
 
 ## Guard effects
 
-Reasoning, code edits, and local tests do not require remote context. Before creating or changing billing resources, invoices, subscriptions, balances, usage, credits, or retries, state the exact organization and `sandbox` or `live` mode. Use a passing `PROJECT_CONTEXT_VALID` doctor check in Node projects; otherwise require explicit project or user context. Do not perform a live billing effect unless the user's request explicitly authorizes it.
+Reasoning, code edits, and local tests do not require remote context. Before creating or changing billing resources, invoices, subscriptions, balances, usage, credits, or retries, state the exact organization and `sandbox` or `live` mode. Before editing a plan or moving subscribers between plan versions, also follow the guard in [plan-versions-and-moves.md](references/plan-versions-and-moves.md): ask whether existing subscribers stay, move at renewal, or move now, and preview the move. Use a passing `PROJECT_CONTEXT_VALID` doctor check in Node projects; otherwise require explicit project or user context. Do not perform a live billing effect unless the user's request explicitly authorizes it.

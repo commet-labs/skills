@@ -10,7 +10,7 @@ The cron frequency is polling cadence, not the subscription schedule. The exact 
 
 Repeated discovery runs use a stable queue idempotency identity for the same organization, customer, subscription, and due timestamp. When diagnosing a missing renewal, verify the chain in order: persisted deadline, discovery eligibility, enqueue message and idempotency key, first queue delivery, consumer outcome, invoice/transaction, and provider attempt.
 
-Commet applies due subscription events, resolves the billing period and current catalog price, calculates lines, persists the invoice, resets model-owned allocations when applicable, and records the period feature snapshot.
+Commet applies due subscription events, including a version move scheduled for renewal, resolves the billing period and the price from the subscription's plan version, calculates lines, persists the invoice, resets model-owned allocations when applicable, and records the period feature snapshot.
 
 Quarterly and yearly subscriptions still process monthly boundaries. The plan base is charged only on a billing month; applicable overage can be invoiced at intermediate monthly boundaries.
 

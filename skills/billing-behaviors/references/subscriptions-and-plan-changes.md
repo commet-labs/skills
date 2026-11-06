@@ -6,7 +6,7 @@ Current subscription statuses are `draft`, `pending_payment`, `trialing`, `activ
 
 Feature access is granted for `active`, `trialing`, and `past_due`. `pending_payment` does not grant access before the first payment succeeds, and `paused` does not grant access.
 
-A customer has at most one open subscription (`draft` through `paused`) per organization, including under concurrent creates. Repeating creation while the open subscription is `pending_payment` reuses it when plan, price, interval, and requested promotion match; omitting a previously requested promo code or direct Offer replaces it and invalidates the old checkout.
+A customer has at most one open subscription (`draft` through `paused`) per organization, including under concurrent creates. Repeating creation while the open subscription is `pending_payment` reuses it when plan version, price, interval, and requested promotion match; omitting a previously requested promo code or direct Offer replaces it and invalidates the old checkout. An unpaid checkout keeps the price of the version it was opened on; after a plan edit, repeating creation opens a checkout on the current version and replaces the old one.
 
 Free subscriptions activate without a paid checkout. Paid and trial flows route through the organization's configured payment provider.
 
@@ -32,6 +32,10 @@ Normal portal changes require both plans to belong to the same plan group. Class
 Immediate paid changes restart the billing period. Commet credits the unused portion of the old effective plan price, charges the full new plan price, applies available customer credits, clears the prior discount, resets the new plan allocation, and records a new feature snapshot.
 
 Scheduled changes take effect at trial end or current-period end.
+
+A change to another plan lands on that plan's current version. The destination must sell the subscription's currency in its country; otherwise the change is refused and the portal does not offer that plan. An interval change on the same plan keeps the subscription's version when that version sells the interval in its currency and country, and otherwise lands on the plan's current version.
+
+A move to another version of the same plan is not a plan change: it does not prorate or restart the period. See [plan-versions-and-moves.md](plan-versions-and-moves.md).
 
 ## Cancellation and reactivation
 
