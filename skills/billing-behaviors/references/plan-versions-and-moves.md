@@ -28,7 +28,7 @@ A subscription reaches another version only through an explicit move:
 
 Every move follows the same rules:
 
-- Only `active`, `trialing`, and `past_due` subscriptions move. A plan move leaves out only the subscriptions that cannot move by status, such as `paused` ones.
+- Only `active`, `trialing`, and `past_due` subscriptions move. A plan move leaves out the subscriptions that cannot move by status, such as `paused` ones, and listed subscriptions already on the destination.
 - A move goes only to a newer version. A subscription on a running experiment moves only to a later version of that experiment. Moving back to an older version is refused.
 - A move never changes currency or the price the subscription pays. A destination that does not sell that price and interval, or that currency in the subscriber's country, is refused.
 - A free version moves only to a free version, and a paid version only to a paid version.
