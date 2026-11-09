@@ -10,7 +10,7 @@ The cron frequency is polling cadence, not the subscription schedule. The exact 
 
 Repeated discovery runs use a stable queue idempotency identity for the same organization, customer, subscription, and due timestamp. When diagnosing a missing renewal, verify the chain in order: persisted deadline, discovery eligibility, enqueue message and idempotency key, first queue delivery, consumer outcome, invoice/transaction, and provider attempt.
 
-Commet applies due subscription events, resolves the billing period and current catalog price, calculates lines, persists the invoice, resets model-owned allocations when applicable, and records the period feature snapshot.
+Commet applies due subscription events, including a version move scheduled for renewal, resolves the billing period and the price from the subscription's plan version, calculates lines, persists the invoice, resets model-owned allocations when applicable, and records the period feature snapshot.
 
 Quarterly and yearly subscriptions still process monthly boundaries. The plan base is charged only on a billing month; applicable overage can be invoiced at intermediate monthly boundaries.
 
@@ -34,5 +34,7 @@ An active offer or promo discount applies to the plan base only. It does not dis
 The original renewal decline is day 0. Automatic retries are anchored to that instant at days 1, 3, 5, and 7. The fourth declined retry exhausts dunning, cancels the subscription, marks the invoice uncollectible, and emits the failure and cancellation events.
 
 A successful recovery settles the existing invoice and subscription relationship. It is not a new subscription sale.
+
+A version move scheduled for renewal waits while the subscription is `past_due`. After the outstanding renewal is paid, the subscription keeps renewing and moves at the next renewal, the end of the period that the collected renewal paid for. Exhausting dunning cancels the subscription on its version and drops the move without a version event.
 
 Use typed webhook events for background communication, and query subscription state directly for access decisions.

@@ -20,6 +20,7 @@ Use `featureAccess.get()` for current feature state. Use `usage.check()` before 
 - Balance top-up increments `currentBalance`.
 - Cancellation has no special balance mutation.
 - Plan-change fulfillment resets the model-owned allocation to the new plan.
+- A version move `now` first deducts usage already tracked, then adds or subtracts the difference in included plan credits or plan balance: an increase first pays any plan-part debt, a decrease never creates new debt, and purchased credits and balance are untouched. Scheduling a move at renewal changes nothing in the current period, including balance and `usage.check()`; the new version's allocation applies at that renewal's reset.
 
 ## Quota
 

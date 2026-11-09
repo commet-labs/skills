@@ -16,6 +16,8 @@ Use the installed SDK as the webhook contract. This skill defines the handling w
 
 Do not copy event unions, payload envelopes, headers, retry schedules, or callback names from this skill. If they are absent from the installed docs and types, report the missing contract instead of guessing.
 
+An endpoint receives only the event types it lists. A newly introduced event type, such as the plan version move events, reaches an existing endpoint only after it is added to that endpoint's list.
+
 ## Implement the endpoint
 
 1. Use the installed framework helper when one exists; otherwise follow the installed SDK's raw-body verification path.
