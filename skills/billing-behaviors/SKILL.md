@@ -19,7 +19,7 @@ In Node projects, run `commet doctor --output agent` before integration changes 
 - [billing-and-dunning.md](references/billing-and-dunning.md) — billing periods, invoice composition, discounts, and retry scheduling.
 - [usage-balances-and-seats.md](references/usage-balances-and-seats.md) — consumption models, resets, packs, top-ups, quota, and seat true-up.
 - [catalog-pricing-and-offers.md](references/catalog-pricing-and-offers.md) — plans, regional pricing by currency and country, Markets, selectable variants, Offers, promo codes, add-ons, and archive behavior.
-- [plan-versions-and-moves.md](references/plan-versions-and-moves.md) — plan versions, plan edits, experiments, moving subscribers between versions, and extras sold per version.
+- [plan-versions-and-moves.md](references/plan-versions-and-moves.md) — plan versions, plan edits, experiments, unpaid checkouts, moving subscribers between versions now or at renewal, reactivation, extras sold per version, and the version-change events.
 
 Do not derive behavior from a generic fairness slogan. Scheduling, charging, discounts, retries, and resets are explicit per operation. For renewal timing, verify the current discovery predicate; never infer that a subscription is due from a date-only dashboard value, a legacy billing-day column, or the cron schedule.
 

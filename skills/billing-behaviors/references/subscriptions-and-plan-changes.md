@@ -6,7 +6,7 @@ Current subscription statuses are `draft`, `pending_payment`, `trialing`, `activ
 
 Feature access is granted for `active`, `trialing`, and `past_due`. `pending_payment` does not grant access before the first payment succeeds, and `paused` does not grant access.
 
-A customer has at most one open subscription (`draft` through `paused`) per organization, including under concurrent creates. Repeating creation while the open subscription is `pending_payment` reuses it when plan version, price, interval, and requested promotion match; omitting a previously requested promo code or direct Offer replaces it and invalidates the old checkout. An unpaid checkout keeps the price of the version it was opened on; after a plan edit, repeating creation opens a checkout on the current version and replaces the old one.
+A customer has at most one open subscription (`draft` through `paused`) per organization, including under concurrent creates. Repeating creation while the open subscription is `pending_payment` reuses it, with the same subscription and checkout link, when the plan, the way its version was requested (plan code, experiment code, or `planVersionId`), the price, the interval, and the requested promotion match; omitting a previously requested promo code or direct Offer replaces it and invalidates the old checkout. An unpaid checkout follows the latest version of what was requested, so a plan edit does not stop a repeated request from reusing it; see [plan-versions-and-moves.md](plan-versions-and-moves.md).
 
 Free subscriptions activate without a paid checkout. Paid and trial flows route through the organization's configured payment provider.
 
@@ -33,19 +33,19 @@ Immediate paid changes restart the billing period. Commet credits the unused por
 
 Scheduled changes take effect at trial end or current-period end.
 
-A change to another plan lands on that plan's current version. The destination must sell the subscription's currency in its country; otherwise the change is refused and the portal does not offer that plan. An interval change on the same plan keeps the subscription's version when that version sells the interval in its currency and country, and otherwise lands on the plan's current version.
+A change to another plan lands on that plan's current version and drops a pending version move without a version event. The destination must sell the subscription's currency in its country; otherwise the change is refused and the portal does not offer that plan. An interval change on the same plan keeps the subscription's version when that version sells the interval in its currency and country, and otherwise lands on the plan's current version.
 
 A move to another version of the same plan is not a plan change: it does not prorate or restart the period. See [plan-versions-and-moves.md](plan-versions-and-moves.md).
 
 ## Cancellation and reactivation
 
-Cancellation can be immediate or scheduled. Free, `pending_payment`, `past_due`, and `paused` subscriptions cancel immediately; one-time subscriptions are not cancelable. A scheduled trial cancellation ends at trial end without converting to paid or charging. A scheduled paid cancellation ends at the current paid period boundary, extended only through contiguous accepted free phases (a zero fixed price); later paid Offer phases do not extend it. Canceling a past-due subscription stops dunning and voids unpaid invoices.
+Cancellation can be immediate or scheduled. Free, `pending_payment`, `past_due`, and `paused` subscriptions cancel immediately; one-time subscriptions are not cancelable. A scheduled trial cancellation ends at trial end without converting to paid or charging. A scheduled paid cancellation ends at the current paid period boundary, extended only through contiguous accepted free phases (a zero fixed price); later paid Offer phases do not extend it. Canceling a past-due subscription stops dunning and voids unpaid invoices. A subscription that ends with a version move pending ends on its version and drops the move.
 
 A full or partial refund does not change the subscription. Cancel it separately when access should end.
 
 Cancellation does not reset or delete the persisted subscription balance.
 
-Reactivation charges first and restores state only after payment succeeds. It does not automatically reset an already initialized balance.
+Reactivation charges first and restores state only after payment succeeds. It does not automatically reset an already initialized balance. A canceled subscription returns on the latest version of what was bought, and a past-due one stays on its version; see [plan-versions-and-moves.md](plan-versions-and-moves.md).
 
 ## Pause and resume
 

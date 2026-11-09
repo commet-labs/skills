@@ -10,7 +10,7 @@ The request country at checkout selects the price: a Market override first, then
 
 A price variant points to one base price through `inheritsFromPriceId` and overrides selected markets. Every unselected market inherits the base price. A caller selects a variant with `priceId`; omitting `priceId` keeps default-price resolution.
 
-A subscription persists the selected price identity and renews at the amount its plan version sells for it. Plan edits publish a new version and do not reach existing subscriptions until they are moved; see [plan-versions-and-moves.md](plan-versions-and-moves.md). Market overrides are not versioned, so an edited Market price reaches its subscribers at renewal. Archiving a price hides it from new selection while existing subscriptions continue using it. A referenced market group cannot be deleted.
+A subscription persists the selected price identity and renews at the amount its plan version sells for it. Plan edits publish a new version and do not reach existing subscriptions until they are moved, while an unpaid checkout follows the latest version of what was requested; see [plan-versions-and-moves.md](plan-versions-and-moves.md). Market overrides are not versioned, so an edited Market price reaches its subscribers at renewal. Archiving a price hides it from new selection while existing subscriptions continue using it. A referenced market group cannot be deleted.
 
 ## Offers
 

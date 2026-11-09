@@ -35,4 +35,6 @@ The original renewal decline is day 0. Automatic retries are anchored to that in
 
 A successful recovery settles the existing invoice and subscription relationship. It is not a new subscription sale.
 
+A version move scheduled for renewal waits while the subscription is `past_due`. After the outstanding renewal is paid, the subscription keeps renewing and moves at the next renewal, the end of the period that the collected renewal paid for. Exhausting dunning cancels the subscription on its version and drops the move without a version event.
+
 Use typed webhook events for background communication, and query subscription state directly for access decisions.
